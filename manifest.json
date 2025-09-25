@@ -1,0 +1,11 @@
+{
+  "name": "demo-poc",
+  "ssr": true,
+  "cache": {
+    "html": false
+  },
+  "seo": {
+    "canonical": true,
+    "hreflang": true
+  }
+}
