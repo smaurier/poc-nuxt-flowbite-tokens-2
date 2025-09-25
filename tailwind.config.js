@@ -14,7 +14,23 @@ module.exports = {
     './node_modules/flowbite-vue/**/*.{js,vue,ts}'
   ],
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        primary: 'var(--color-primary)',
+        text: 'var(--color-text)',
+        bg: 'var(--color-bg)'
+      },
+      borderRadius: {
+        md: 'var(--radius-md)'
+      },
+      spacing: {
+        2: 'var(--space-2)',
+        4: 'var(--space-4)'
+      },
+      fontFamily: {
+        sans: ['var(--font-sans)']
+      }
+    }
   },
   plugins: [flowbitePlugin]
 }
