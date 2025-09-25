@@ -7,33 +7,33 @@
 
     <main class="mx-auto flex max-w-5xl flex-col gap-[var(--space-4)] px-[var(--space-4)] py-[var(--space-4)]">
       <section class="space-y-[var(--space-2)]">
-        <FlowButton class="bg-primary text-[color:var(--color-primary-contrast)] rounded-md px-[var(--space-4)] py-[var(--space-2)] font-semibold" @click="isModalOpen = true">
+        <FwbButton class="bg-primary text-[color:var(--color-primary-contrast)] rounded-md px-[var(--space-4)] py-[var(--space-2)] font-semibold" @click="isModalOpen = true">
           Ouvrir la modale
-        </FlowButton>
+        </FwbButton>
 
-        <FlowAlert class="bg-primary/10 text-text border border-[color:var(--color-primary)]">
+        <FwbAlert class="bg-primary/10 text-text border border-[color:var(--color-primary)]">
           Les composants Flowbite peuvent être harmonisés avec les tokens grâce aux classes Tailwind personnalisées.
-        </FlowAlert>
+        </FwbAlert>
       </section>
 
       <section>
-        <FlowTabs class="text-text">
-          <FlowTab title="Présentation">
+        <FwbTabs class="text-text">
+          <FwbTab title="Présentation">
             <p class="p-[var(--space-4)]">
               Utilisez les onglets Flowbite pour organiser le contenu, tout en conservant la typographie <span class="font-semibold">font-sans</span>.
             </p>
-          </FlowTab>
-          <FlowTab title="Actions">
+          </FwbTab>
+          <FwbTab title="Actions">
             <div class="flex gap-[var(--space-4)] p-[var(--space-4)]">
-              <FlowButton class="bg-primary text-[color:var(--color-primary-contrast)] rounded-md px-[var(--space-4)] py-[var(--space-2)]">
+              <FwbButton class="bg-primary text-[color:var(--color-primary-contrast)] rounded-md px-[var(--space-4)] py-[var(--space-2)]">
                 Action primaire
-              </FlowButton>
-              <FlowButton class="bg-bg text-text border border-[color:var(--color-primary)] rounded-md px-[var(--space-4)] py-[var(--space-2)]">
+              </FwbButton>
+              <FwbButton class="bg-bg text-text border border-[color:var(--color-primary)] rounded-md px-[var(--space-4)] py-[var(--space-2)]">
                 Action secondaire
-              </FlowButton>
+              </FwbButton>
             </div>
-          </FlowTab>
-        </FlowTabs>
+          </FwbTab>
+        </FwbTabs>
       </section>
 
       <section class="rounded-md border border-[color:var(--color-primary)] bg-bg p-[var(--space-4)]">
@@ -54,7 +54,7 @@
       </section>
     </main>
 
-    <FlowModal v-model:show="isModalOpen" class="text-text">
+    <FwbModal v-model:show="isModalOpen" class="text-text">
       <template #header>
         <h3 class="text-lg font-semibold">Modale pilotée par tokens</h3>
       </template>
@@ -63,18 +63,18 @@
       </p>
       <template #footer>
         <div class="flex justify-end gap-[var(--space-2)]">
-          <FlowButton class="bg-bg text-text border border-[color:var(--color-primary)] rounded-md px-[var(--space-4)] py-[var(--space-2)]" @click="isModalOpen = false">
+          <FwbButton class="bg-bg text-text border border-[color:var(--color-primary)] rounded-md px-[var(--space-4)] py-[var(--space-2)]" @click="isModalOpen = false">
             Fermer
-          </FlowButton>
+          </FwbButton>
         </div>
       </template>
-    </FlowModal>
+    </FwbModal>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
-import { Alert as FlowAlert, Button as FlowButton, Modal as FlowModal, Tab as FlowTab, Tabs as FlowTabs } from 'flowbite-vue'
+import { FwbAlert, FwbButton, FwbModal, FwbTab, FwbTabs } from 'flowbite-vue'
 
 const isModalOpen = ref(false)
 const isDark = ref(false)
