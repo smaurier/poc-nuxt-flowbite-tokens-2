@@ -1,6 +1,6 @@
-const flowbitePlugin = require('flowbite/plugin')
+import flowbitePlugin from 'flowbite/plugin'
 
-module.exports = {
+export default {
   content: [
     './app.vue',
     './error.vue',
