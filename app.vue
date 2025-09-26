@@ -5,38 +5,41 @@
 </template>
 
 <script setup lang="ts">
-let tenantId: string = 'acme'
-let theme: string | undefined = 'light'
-let css = ''
+const DEFAULT_TENANT = 'acme'
+const event = process.server ? useRequestEvent() : null
+
+let tenantId: string = process.server
+  ? ((event?.context.tenantId as string | undefined) ?? DEFAULT_TENANT)
+  : DEFAULT_TENANT
+let cssVars = ''
+let isDarkMode = false
 
 if (process.server) {
-  const event = useRequestEvent()
-  const [{ DEFAULT_TENANT }, { loadTokens, tokensToCssVars }] = await Promise.all([
-    import('~/server/middleware/tenant'),
-    import('~/server/utils/theme')
-  ])
-
-  tenantId = (event?.context.tenantId as string | undefined) ?? DEFAULT_TENANT
+  const { loadTokens, tokensToCssVars } = await import('~/server/utils/theme')
   const tokens = await loadTokens(tenantId)
-  theme = (tokens.theme as string | undefined) ?? 'light'
-  css = tokensToCssVars(tokens)
+
+  cssVars = tokensToCssVars(tokens)
+  isDarkMode = Boolean(tokens['dark.enabled'])
 } else if (process.client) {
   const docEl = document.documentElement
+
   tenantId = docEl.getAttribute('data-tenant') ?? tenantId
-  theme = docEl.getAttribute('data-theme') ?? theme
+  const currentTheme = docEl.getAttribute('data-theme') ?? undefined
   const existingStyle = document.getElementById('tenant-tokens')
-  css = existingStyle?.textContent ?? css
+
+  cssVars = existingStyle?.textContent ?? cssVars
+  isDarkMode = currentTheme === 'dark'
 }
 
 useHead({
   htmlAttrs: {
     'data-tenant': tenantId,
-    'data-theme': theme
+    'data-theme': isDarkMode ? 'dark' : undefined
   },
   style: [
     {
       id: 'tenant-tokens',
-      children: css
+      children: cssVars
     }
   ]
 })
